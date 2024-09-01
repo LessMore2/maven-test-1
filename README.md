@@ -1,2 +1,2 @@
 # maven-project
-Example of maven project for Jenkins
+Example of maven project for Jenkins.
