@@ -20,9 +20,9 @@ pipeline {
 
         stage('Start SAST') {
             when {
-                branch 'master/*'
                 allOf {
-                    environment name: 'Release_PSI', value: 'true'
+                    branch 'master/*'
+                    params.Release_PSI == true
                 }
             }
             steps {
@@ -32,9 +32,9 @@ pipeline {
 
         stage('Start OSS') {
             when {
-                branch 'master/*'
                 allOf {
-                    environment name: 'Release_PSI', value: 'true'
+                    branch 'master/*'
+                    params.Release_PSI == true
                 }
             }
             steps {
