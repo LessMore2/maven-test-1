@@ -25,8 +25,9 @@ pipeline {
                     params.Release_PSI == true
                 }
             }
-
-            startStat()
+            steps {
+                startStat()
+            }
         }
 
         stage('Start OSS') {
