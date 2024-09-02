@@ -18,22 +18,12 @@ pipeline {
             }
         }
 
-        when {
-            branch 'master'
-            stage('Sast & Oss') {
-                if (parameters.Release_PSI == true) {
-                    stage('Sast') {
-                        steps {
-                            echo 'Sast'
-                        }
-                    }
-                    stage('Oss') {
-                        steps {
-                            echo 'Oss'
-                        }
-                    }
-                }
-
+        stage('Sast & Oss') {
+            when {
+                branch 'master'
+            }
+            steps {
+                echo 'Steps'
             }
         }
 
