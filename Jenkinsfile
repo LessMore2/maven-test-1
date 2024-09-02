@@ -18,16 +18,14 @@ pipeline {
             }
         }
 
-        stage('Start SAST') {
-            when {
-                expression {
-                    branch 'master/*'
-                    params.Release_PSI == true
-                }
+        when {
+            expression {
+                branch 'master/*'
+                params.Release_PSI == true
             }
-            steps {
-                startStat()
-            }
+        }
+        steps {
+            startStat()
         }
 
         stage('Start OSS') {
@@ -53,7 +51,7 @@ pipeline {
 }
 
 def startStat() {
-    stage('Starting OSS') {
+    stage('Starting Sast') {
         steps {
             echo 'Start Oss'
         }
