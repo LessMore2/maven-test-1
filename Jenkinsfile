@@ -19,10 +19,15 @@ pipeline {
         }
 
         stage('Sast & Oss') {
-            if (branch.isMaster() && params.Release_PSI == true) {
-                steps {
-                    echo 'Start Sast & Oss_2'
+            when {
+                expression {
+                    branch 'master'
+                    params.Release_PSI == true
                 }
+            }
+
+            steps {
+                echo 'Start Sast & Oss_2'
             }
         }
 
