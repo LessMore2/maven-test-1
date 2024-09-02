@@ -26,9 +26,7 @@ pipeline {
                 }
             }
 
-            steps {
-                echo 'Start Sast'
-            }
+            startStat();
         }
 
         stage('Start OSS') {
@@ -50,5 +48,13 @@ pipeline {
             }
         }
 
+    }
+}
+
+def startStat() {
+    stage('Starting OSS') {
+        steps {
+            echo 'Start Oss'
+        }
     }
 }
