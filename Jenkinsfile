@@ -1,20 +1,38 @@
 pipeline {
-	agent any
-	stages{
-		   stage ('Init'){
-				steps {
-					echo "Init step..."
-				}
-		   }
-		   stage ('Build') {
-				steps {
-					echo "Build step..."
-				}
-		   }
-		   stage ('Deploy') {
-				steps {
-					echo "Deploy step..."
-				}
-		   }
-	}
+    agent any
+    stages{
+        stage('Build'){
+            steps {
+                sh 'mvn clean package'
+            }
+            post {
+                success {
+                    echo 'Archiving...'
+                    archiveArtifacts artifacts: '**/target/*.war'
+                }
+            }
+        }
+        stage ('Deploy to Staging'){
+            steps {
+                build job: 'lesson-1-first-jenkins-job'
+            }
+        }
+
+        stage ('Deploy to Production'){
+            steps{
+                timeout(time:5, unit:'DAYS'){
+                    input message:'Approve PRODUCTION Deployment?'
+                }
+                build job: 'lesson-1-first-jenkins-job'
+            }
+            post {
+                success {
+                    echo 'Code deployed to Production.'
+                }
+                failure {
+                    echo ' Deployment failed.'
+                }
+            }
+        }
+    }
 }
