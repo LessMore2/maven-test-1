@@ -19,17 +19,22 @@ pipeline {
         }
 
         stage('Start SAST') {
-            if (branch 'master/*' && params.Release_PSI == true) {
-                steps {
-                    echo 'Start Sast'
+            when {
+                branch 'master/*'
+                allOf {
+                    params.Release_PSI == true
                 }
+            }
+            steps {
+                echo 'Start Sast'
             }
         }
 
         stage('Start OSS') {
             when {
-                expression {
-                    env.BRANCH_NAME == "master/*" && params.Release_PSI == true
+                branch 'master/*'
+                allOf {
+                    params.Release_PSI == true
                 }
             }
             steps {
