@@ -18,21 +18,19 @@ pipeline {
             }
         }
 
-        stage ('Deploy to Production'){
-            steps{
-                timeout(time:5, unit:'DAYS'){
-                    input message:'Approve PRODUCTION Deployment?'
-                }
-                build job: 'lesson-1-first-jenkins-job'
-            }
-            post {
-                success {
-                    echo 'Code deployed to Production.'
-                }
-                failure {
-                    echo ' Deployment failed.'
-                }
-            }
-        }
+         stage ('Deployments') {
+         parallel{
+           stage ('Deploy to Staging'){
+             steps {
+               build job: 'lesson-1-first-jenkins-job'
+             }
+           }
+           stage ('Deploy to prod') {
+             steps {
+               build job: 'lesson-1-first-jenkins-job'
+             }     
+           }
+         }
+       }
     }
 }
