@@ -21,7 +21,7 @@ pipeline {
         stage('Start SAST') {
             when {
                 expression {
-                    branch 'master/*'
+                    env.BRANCH_NAME == "master/*"
                     params.Release_PSI == true
                 }
             }
