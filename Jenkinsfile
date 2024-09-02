@@ -20,7 +20,7 @@ pipeline {
 
         stage('Start SAST') {
             when {
-                allOf {
+                expression {
                     branch 'master/*'
                     params.Release_PSI == true
                 }
@@ -32,7 +32,7 @@ pipeline {
 
         stage('Start OSS') {
             when {
-                allOf {
+                expression {
                     branch 'master/*'
                     params.Release_PSI == true
                 }
