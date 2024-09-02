@@ -23,11 +23,7 @@ pipeline {
                 branch 'master' && parameters.Release_PSI
             }
             steps {
-                echo 'Start Sast & Oss_1'
-            }
-
-            steps {
-                echo 'Start Sast & Oss_2'
+                echo 'Start Sast & Oss'
             }
         }
 
