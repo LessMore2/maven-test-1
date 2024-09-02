@@ -23,12 +23,12 @@ pipeline {
                 if (parameters.Release_PSI == true) {
                     stage('Sast') {
                         steps {
-
+                            echo 'Sast'
                         }
                     }
                     stage('Oss') {
                         steps {
-
+                            echo 'Oss'
                         }
                     }
                 }
@@ -38,7 +38,7 @@ pipeline {
 
         stage('Deploy IFT') {
             steps {
-
+                echo 'Deploy IFT'
             }
         }
 
