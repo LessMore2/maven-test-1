@@ -1,7 +1,12 @@
 pipeline {
     agent any
-    stages{
-        stage('Build'){
+
+    parameters {
+        booleanParam(name: 'Release_PSI', defaultValue: true, description: 'Scanning Sast & Oss')
+    }
+
+    stages {
+        stage('Build') {
             steps {
                 sh 'mvn clean package'
             }
@@ -12,25 +17,49 @@ pipeline {
                 }
             }
         }
-        stage ('Deploy to Staging'){
+
+        stage('Start SAST') {
+            when {
+                expression {
+                    branch 'master/*'
+                    params.Release_PSI == true
+                }
+            }
             steps {
-                build job: 'lesson-1-first-jenkins-job'
+                echo 'Start Sast'
             }
         }
 
-         stage ('Deployments') {
-         parallel{
-           stage ('Deploy to Staging'){
-             steps {
-               build job: 'lesson-1-first-jenkins-job'
-             }
-           }
-           stage ('Deploy to prod') {
-             steps {
-               build job: 'lesson-1-first-jenkins-job'
-             }     
-           }
-         }
-       }
+        stage('Start OSS') {
+            when {
+                expression {
+                    branch 'master/*'
+                    params.Release_PSI == true
+                }
+            }
+            steps {
+                echo 'Start Oss'
+            }
+        }
+
+//        stage('Sast & Oss') {
+//            when {
+//                expression {
+//                    branch 'master/*'
+//                    params.Release_PSI == true
+//                }
+//            }
+//
+//            steps {
+//                echo 'Start Sast & Oss_2'
+//            }
+//        }
+
+        stage('Deploy IFT') {
+            steps {
+                echo 'Deploy IFT'
+            }
+        }
+
     }
 }
