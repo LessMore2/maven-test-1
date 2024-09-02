@@ -21,7 +21,7 @@ pipeline {
         stage('Sast & Oss') {
             when {
                 expression {
-                    branch 'master'
+                    branch 'master/*'
                     params.Release_PSI == true
                 }
             }
