@@ -20,7 +20,7 @@ pipeline {
 
         stage('Sast & Oss') {
             when {
-                branch.isMaster()
+                branch 'master'
                 environment name: 'Release_PSI', value: true
             }
             steps {
