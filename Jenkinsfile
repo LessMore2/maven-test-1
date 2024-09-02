@@ -21,7 +21,8 @@ pipeline {
         stage('Start SAST') {
             when {
                 expression {
-                    env.BRANCH_NAME == "master/*" && params.Release_PSI == true
+                    branch 'master/*'
+                    params.Release_PSI == true
                 }
             }
             steps {
@@ -32,7 +33,8 @@ pipeline {
         stage('Start OSS') {
             when {
                 expression {
-                    env.BRANCH_NAME == "master/*" && params.Release_PSI == true
+                    branch 'master/*'
+                    params.Release_PSI == true
                 }
             }
             steps {
