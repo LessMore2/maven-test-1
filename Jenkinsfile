@@ -20,7 +20,7 @@ pipeline {
 
         stage('Sast & Oss') {
             when {
-                branch 'master' && params.Release_PSI
+                branch 'master' && params.Release_PSI == true
             }
             steps {
                 echo 'Start Sast & Oss'
