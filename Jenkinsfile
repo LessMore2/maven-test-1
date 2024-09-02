@@ -26,10 +26,10 @@ pipeline {
                 }
             }
             steps {
-                startStat()
+                echo 'Start Sast'
             }
         }
-        
+
         stage('Start OSS') {
             when {
                 expression {
@@ -37,7 +37,6 @@ pipeline {
                     params.Release_PSI == true
                 }
             }
-
             steps {
                 echo 'Start Oss'
             }
@@ -49,13 +48,5 @@ pipeline {
             }
         }
 
-    }
-}
-
-def startStat() {
-    stage('Starting Sast') {
-        steps {
-            echo 'Start Oss'
-        }
     }
 }
