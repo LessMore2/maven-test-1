@@ -21,7 +21,7 @@ pipeline {
         stage('Sast & Oss') {
             when {
                 branch 'master'
-                environment name: 'Release_PSI', value: true
+//                environment name: 'Release_PSI', value: true
             }
             steps {
                 echo 'Start Sast & Oss'
