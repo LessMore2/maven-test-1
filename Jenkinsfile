@@ -19,13 +19,10 @@ pipeline {
         }
 
         stage('Start SAST') {
-            when {
-                expression {
-                    env.BRANCH_NAME == "master/*" && params.Release_PSI == true
+            if (branch 'master/*' && params.Release_PSI == true) {
+                steps {
+                    echo 'Start Sast'
                 }
-            }
-            steps {
-                echo 'Start Sast'
             }
         }
 
