@@ -22,7 +22,7 @@ pipeline {
             when {
                 branch 'master/*'
                 allOf {
-                    environment name: 'Release_PSI', value: true
+                    environment name: 'Release_PSI', value: 'true'
                 }
             }
             steps {
@@ -34,7 +34,7 @@ pipeline {
             when {
                 branch 'master/*'
                 allOf {
-                    environment name: 'Release_PSI', value: true
+                    environment name: 'Release_PSI', value: 'true'
                 }
             }
             steps {
