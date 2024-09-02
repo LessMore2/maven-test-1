@@ -18,16 +18,18 @@ pipeline {
             }
         }
 
-        when {
-            expression {
-                branch 'master/*'
-                params.Release_PSI == true
+        stage('Start SAST') {
+            when {
+                expression {
+                    branch 'master/*'
+                    params.Release_PSI == true
+                }
+            }
+            steps {
+                startStat()
             }
         }
-        steps {
-            startStat()
-        }
-
+        
         stage('Start OSS') {
             when {
                 expression {
