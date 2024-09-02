@@ -18,7 +18,8 @@ pipeline {
             }
         }
 
-        if (branch.isMaster()) {
+        when {
+            branch 'master'
             stage('Sast & Oss') {
                 if (parameters.Release_PSI == true) {
                     stage('Sast') {
