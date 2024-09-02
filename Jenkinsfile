@@ -18,7 +18,7 @@ pipeline {
             }
         }
 
-        stage('Sast & Oss') {
+        stage('Start SAST') {
             when {
                 expression {
                     branch 'master/*'
@@ -27,7 +27,20 @@ pipeline {
             }
 
             steps {
-                echo 'Start Sast & Oss_2'
+                echo 'Start Sast'
+            }
+        }
+
+        stage('Start OSS') {
+            when {
+                expression {
+                    branch 'master/*'
+                    params.Release_PSI == true
+                }
+            }
+
+            steps {
+                echo 'Start Oss'
             }
         }
 
